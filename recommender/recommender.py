@@ -87,7 +87,7 @@ except SyntaxError:
     
 filtered_results = filter_by_genre(results, movies, desired_genres)
 
-print "Here are some recommendations for you:"
+print "\nHere are some recommendations for you:\n"
 
 for movie_id, rating in filtered_results[:10]:
     print movie_id, movies[movie_id]._data['name'], rating
