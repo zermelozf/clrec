@@ -6,7 +6,7 @@ Use SVD decomposition to perform collaborative filtering. Also allows to filter 
 
 ## Dependency
 
-This program depends on (python-recsys)[http://ocelma.net/software/python-recsys/build/html/installation.html]
+This program depends on [python-recsys](http://ocelma.net/software/python-recsys/build/html/installation.html)
 
 ## Run program
 
