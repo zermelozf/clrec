@@ -11,6 +11,7 @@ This program depends on [python-recsys](http://ocelma.net/software/python-recsys
 ## Run program
 
 ```shell
-python recommender/recommender.py
+cd recommender
+python recommender.py
 ```
 
