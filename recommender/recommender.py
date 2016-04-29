@@ -104,7 +104,9 @@ except SyntaxError:
 
 filtered_results = filter_by_tag(results, tags, desired_tags)
 
-print "\nHere are some recommendations for you:\n"
-
-for movie_id, rating in filtered_results[:5]:
-    print movie_id, movies[movie_id]._data['name'], rating
+if filtered_results == []:
+    print "\nNo tags selected. Thank you.\n"
+else:
+    print "\nHere are some recommendations for you:\n"
+    for movie_id, rating in filtered_results[:5]:
+        print movie_id, movies[movie_id]._data['name'], rating
