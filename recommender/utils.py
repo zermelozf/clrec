@@ -2,6 +2,7 @@
 """
 
 from collections import defaultdict
+import re
 
 from recsys.algorithm.factorize import SVD
 from recsys.datamodel.data import Data
@@ -23,11 +24,11 @@ def load_ratings(filename):
 def load_movies(filename):
     """ Load movies.
     """
-    
+    pattern = re.compile(r'''((?:[^,"']|"[^"]*"|'[^']*')+)''')
     items = dict()
     for line in open(filename):
         try:
-            data =  line.strip('\r\n').split(',')
+            data =  pattern.split(line)[1::2]
             item_id = int(data[0])
             item_name = data[1]
             genres = data[2].split('|')
