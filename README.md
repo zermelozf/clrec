@@ -15,3 +15,14 @@ cd recommender
 python recommender.py
 ```
 
+## Docker run
+
+This script has been packaged with [docker](https://www.docker.com) to ease
+installation and running.
+
+To use it please install the [docker toolbox](https://www.docker.com/products/overview#/docker_toolbox)
+and run the following command from a docker terminal:
+
+```
+docker run -it zermelozf/clrec
+```

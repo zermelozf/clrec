@@ -78,7 +78,6 @@ Please select a genre:
 16: Thriller
 17: War
 18: Western
-
 """
 try:
     desired_genres = [input("Your choice (Enter to skip): ")]
