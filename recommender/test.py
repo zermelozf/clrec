@@ -9,8 +9,8 @@ class Test(unittest.TestCase):
     
     def setUp(self):
         #Load data
-        ratings = load_ratings('../data/ml-100k/u.data')
-        self.movies = load_movies('../data/ml-100k/u.item')
+        ratings = load_ratings('../data/ml-latest-small/ratings.csv')
+        self.movies = load_movies('../data/ml-latest-small/movies.csv')
         
         #Train & Test data
         train, test = ratings.split_train_test(percent=80)
