@@ -133,14 +133,15 @@ def menu(user_id, results, movies):
             print '   {:<50}'.format(movies[movie_id]._data['name'][:50]), 
             print "%.1f stars" % rating
     else:
-        print "No match for now."
+        print "No match for now. Try rating movies."
 
     print """
 1. Rate movies
 2. Filter movies by genre
 3. Filter movies by keyword
 4. See my ratings
-5. Save & quit
+5. Change user
+6. Save & quit
     """
     
     choice = input("Enter your choice: ")
@@ -198,7 +199,14 @@ SVD decomposistion.
             results = select_genre(results, movies)
         if choice == 3:  # Filter by tag
             results = select_keyword(results, tags)
-        if choice == 5:  # Save & Quit
+        if choice == 5:
+            user_id = str(raw_input("Please enter a username: "))
+            user = User(user_id)
+            try:
+                results = svd.recommend(user_id, is_row=False, n=N)
+            except KeyError:
+                results = []
+        if choice == 6:  # Save & Quit
             ratings.save('../data/myratings.data')
             print "\nThank you!\n"
             break
