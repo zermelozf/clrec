@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/zermelozf/clrec.svg?branch=master)](https://travis-ci.org/zermelozf/clrec)
+
 # Command line recommender system
 
 A minimalistic recommender system based on python-recsys.

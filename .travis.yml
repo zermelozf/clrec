@@ -1,0 +1,19 @@
+language: python
+python:
+  - "2.7"
+
+virtualenv:
+  system_site_packages: true
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install -y python-dev
+  - sudo apt-get install -y python-scipy python-numpy
+  - sudo apt-get install -y python-pip
+  - pip install csc-pysparse networkx divisi2
+  - git clone https://github.com/ocelma/python-recsys.git recsys
+  - cd recsys && python setup.py install
+  - cd ..
+
+# command to run tests
+script: nosetests
