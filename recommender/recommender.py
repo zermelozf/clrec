@@ -3,13 +3,13 @@
 
 import random
 import os
+import sys
 
 from recsys.datamodel.user import User
 from recsys.datamodel.data import Data
 
 from utils import load_movies, load_ratings, load_tags
 from utils import create_svd_model, filter_by_genre, filter_by_tag
-
 
 GENRE = {0: 'Unknow',
     1: 'Action',
@@ -151,15 +151,26 @@ def menu(user_id, results, movies):
 
 if __name__ == "__main__":
     
-    #Load data
+    # Load data from custom path
     try:
-        ratings = Data()
-        ratings.load('../data/myratings.data')
-    except:
-        ratings = load_ratings('../data/ml-latest-small/ratings.csv')
-    movies = load_movies('../data/ml-latest-small/movies.csv')
-    tags = load_tags('../data/ml-latest-small/tags.csv')
+        data_path = sys.argv[1]
+    except IndexError:
+        data_path = '/data'
     
+    
+    #Load data
+    ratings = Data()
+    if os.path.isfile(data_path + '/myratings.data'):
+        ratings.load(data_path + '/myratings.data')
+    else:
+        try:
+            ratings = load_ratings(data_path + '/ratings.csv')
+        except IOError:
+            raise Exception('Data not found. Please specify it.'
+                            % data_path)
+    movies = load_movies(data_path + '/movies.csv')
+    tags = load_tags(data_path + '/tags.csv')
+            
     os.system('clear')
     print """
 #####################################################
@@ -170,18 +181,17 @@ A minimalistic command line recommender system using
 SVD decomposistion.
 """
     
-    # Create a user
-    user_id = str(raw_input("Please enter your username: "))
-    user = User(user_id)
-    
     #Create and train model
     svd = create_svd_model(ratings)
     
     N = 10000
-    choice = -1
+    choice = 5
     while True:
         
         #recommend
+        if choice == 5:
+            user_id = str(raw_input("Please enter a username: "))
+            user = User(user_id)
         try:
             results = svd.recommend(user_id, is_row=False, n=N)
         except KeyError:
@@ -199,15 +209,8 @@ SVD decomposistion.
             results = select_genre(results, movies)
         if choice == 3:  # Filter by tag
             results = select_keyword(results, tags)
-        if choice == 5:
-            user_id = str(raw_input("Please enter a username: "))
-            user = User(user_id)
-            try:
-                results = svd.recommend(user_id, is_row=False, n=N)
-            except KeyError:
-                results = []
         if choice == 6:  # Save & Quit
-            ratings.save('../data/myratings.data')
+            ratings.save(data_path + '/myratings.data')
             print "\nThank you!\n"
             break
         

@@ -16,7 +16,6 @@ RUN cd recsys && python setup.py install
 
 # Launch script
 COPY recommender /recommender
-COPY data /data
 WORKDIR /recommender
 
 CMD ["python", "recommender.py"]

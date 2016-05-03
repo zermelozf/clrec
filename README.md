@@ -24,5 +24,8 @@ To use it please install the [docker toolbox](https://www.docker.com/products/ov
 and run the following command from a docker terminal:
 
 ```
-docker run -it zermelozf/clrec
+docker run -v /my/data/folder:/data -it zermelozf/clrec
 ```
+
+where `/my/data/folder` is the location of your dataset. Datasets are available 
+on the [Movielens site](http://grouplens.org/datasets/movielens/latest/).
