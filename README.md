@@ -12,7 +12,7 @@ This program depends on [python-recsys](http://ocelma.net/software/python-recsys
 
 ```shell
 cd recommender
-python recommender.py
+python recommender.py /path/to/data/folder
 ```
 
 ## Docker run
